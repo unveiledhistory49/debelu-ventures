@@ -29,7 +29,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={80}>
             <h1 className="mt-6 max-w-3xl font-display text-[44px] font-medium leading-[1.02] tracking-tight md:text-[84px]">
-              Software for businesses that refuse to operate normally.
+              Software infrastructure for ambitious businesses.
             </h1>
           </Reveal>
           <Reveal delay={160}>
