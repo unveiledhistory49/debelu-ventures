@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+*.log
+.DS_Store
+.vercel/
+tsconfig.tsbuildinfo
+.env*
+*.pem
+
+# Source materials (design mockups, icon pack, image-generation docs).
+# Excluded to keep the deployable site lean — and because it contains
+# debelu-ventures/pollinations-api-key.txt, which must never be committed.
+debelu-ventures/

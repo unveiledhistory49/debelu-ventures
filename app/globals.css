@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Motion scale (transitions.dev tokens) */
+  --duration-stagger: 40ms;
+  --duration-micro: 80ms;
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-medium: 350ms;
+  --duration-slow: 400ms;
+  --duration-very-slow: 500ms;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+  --ease-out: ease-out;
+  --ease-linear: linear;
+  --distance-micro: 4px;
+  --distance-medium: 12px;
+  --blur-small: 2px;
+  --blur-medium: 3px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-canvas text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #2b6bff;
+  color: #fff;
+}
+
+/* Eyebrow / technical label */
+.eyebrow {
+  @apply font-mono text-[11px] uppercase tracking-[0.22em];
+}
+
+/* Scroll reveal (texts-reveal rhythm) */
+.t-reveal {
+  opacity: 0;
+  transform: translateY(var(--distance-medium));
+  filter: blur(var(--blur-small));
+  transition:
+    opacity var(--duration-very-slow) var(--ease-in-out),
+    transform var(--duration-very-slow) var(--ease-smooth-out),
+    filter var(--duration-very-slow) var(--ease-in-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.t-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Shimmer for in-progress status lines */
+.t-shimmer {
+  background: linear-gradient(100deg, currentColor 30%, rgba(255, 255, 255, 0.9) 50%, currentColor 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: t-shimmer 2.4s var(--ease-linear) infinite;
+}
+@keyframes t-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Slow orbital drift for hero / diagram accents */
+@keyframes t-drift {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.t-drift {
+  animation: t-drift 90s var(--ease-linear) infinite;
+  transform-origin: center;
+}
+
+@keyframes t-pulse-node {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+.t-pulse-node {
+  animation: t-pulse-node 3.2s var(--ease-in-out) infinite;
+}
+
+@keyframes t-dash-flow {
+  to { stroke-dashoffset: -28; }
+}
+.t-dash-flow {
+  stroke-dasharray: 5 9;
+  animation: t-dash-flow 1.6s var(--ease-linear) infinite;
+}
+
+/* Nav link underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* Button arrow nudge */
+.btn-arrow svg {
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.btn-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+/* Card hover lift */
+.lift {
+  transition:
+    transform var(--duration-fast) var(--ease-smooth-out),
+    box-shadow var(--duration-fast) var(--ease-smooth-out),
+    border-color var(--duration-fast) var(--ease-smooth-out);
+}
+.lift:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .t-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .t-shimmer,
+  .t-drift,
+  .t-pulse-node,
+  .t-dash-flow {
+    animation: none;
+  }
+  .lift:hover { transform: none; }
+  .btn-arrow:hover svg { transform: none; }
+}
