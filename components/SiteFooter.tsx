@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowIcon, Wordmark } from "./SiteNav";
+import EmailLink from "./EmailLink";
 
 const columns = [
   {
@@ -39,6 +40,10 @@ export default function SiteFooter() {
             >
               Start a conversation <ArrowIcon />
             </Link>
+            <p className="mt-4 text-sm text-white/50">
+              Prefer email?{" "}
+              <EmailLink className="font-medium text-white/80 transition-colors hover:text-white" />
+            </p>
             <div className="mt-8 flex items-center gap-5 text-white/50">
               <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="Debelu Ventures on LinkedIn" className="transition-colors hover:text-white">
                 <svg viewBox="0 0 16 16" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M3.5 2.2a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6ZM2.4 6h2.2v7.6H2.4V6Zm4 0h2.1v1h.1c.3-.6 1-1.2 2.1-1.2 2.2 0 2.7 1.5 2.7 3.4v4.4h-2.2V9.9c0-.9 0-2-1.2-2s-1.4.9-1.4 1.9v3.8H6.4V6Z"/></svg>

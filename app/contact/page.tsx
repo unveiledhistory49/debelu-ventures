@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
+import EmailLink from "@/components/EmailLink";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -27,6 +28,12 @@ export default function ContactPage() {
                 <div className="flex justify-between gap-6">
                   <dt className="text-muted">Engagements</dt>
                   <dd className="font-medium text-ink">Worldwide, remote-first</dd>
+                </div>
+                <div className="flex justify-between gap-6">
+                  <dt className="text-muted">Prefer email</dt>
+                  <dd className="font-medium text-ink">
+                    <EmailLink className="text-accent transition-colors hover:text-accent-deep" />
+                  </dd>
                 </div>
               </dl>
             </div>
